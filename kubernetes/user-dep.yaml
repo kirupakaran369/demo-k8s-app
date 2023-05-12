@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-app
+  template:
+    metadata:
+      labels: 
+        app: user-app
+    spec:
+      containers:
+        - name: user-con
+          image: kirupa17/k8spoc:User
+          env:
+            - name: AUTH_ADDRESS
+              value: "auth-service.default"
